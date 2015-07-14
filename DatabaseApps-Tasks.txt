@@ -1,0 +1,10 @@
+Problem 1 : Oracle DB - Preslav
+Problem 2 : ZIP Archive + SQL Server - Valentin
+Problem 3 : PDF Report - Dimitar
+Problem 4 : XML Report - Ivan
+Problem 5 : JSON + MongoDB - Anton
+Problem 6 : Import Data From XML - Dimitar
+Problem 7 : MySQL - Spas
+Problem 8 : SQLite + MySQL to Excel - Spas, Preslav
+
+Team meeting with report about current progress - 19/20 July
