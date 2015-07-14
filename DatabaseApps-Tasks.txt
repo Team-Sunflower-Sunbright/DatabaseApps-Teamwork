@@ -1,10 +1,10 @@
-Problem 1 : Oracle DB - Preslav
-Problem 2 : ZIP Archive + SQL Server - Valentin
-Problem 3 : PDF Report - Dimitar
-Problem 4 : XML Report - Ivan
-Problem 5 : JSON + MongoDB - Anton
-Problem 6 : Import Data From XML - Dimitar
-Problem 7 : MySQL - Spas
-Problem 8 : SQLite + MySQL to Excel - Spas, Preslav
+Problem 1 : Oracle DB - Preslav - 3 points
+Problem 2 : ZIP Archive + SQL Server - Valentin - 5 points
+Problem 3 : PDF Report - Dimitar - 3 points
+Problem 4 : XML Report - Ivan - ?(3) points
+Problem 5 : JSON + MongoDB - Anton - 5 points
+Problem 6 : Import Data From XML - Dimitar - 6 points
+Problem 7 : MySQL - Spas - ?(2) points
+Problem 8 : SQLite + MySQL to Excel - Spas, Preslav - ?(5) points
 
 Team meeting with report about current progress - 19/20 July
