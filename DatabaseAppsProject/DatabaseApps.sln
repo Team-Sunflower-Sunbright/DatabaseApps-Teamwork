@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.Models", "DatabaseApps.Models\DatabaseApps.Models.csproj", "{D38A66EF-1298-4F9D-89B9-528CA2CC5C32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.Oracle", "DatabaseApps.Oracle\DatabaseApps.Oracle.csproj", "{8D9A3CE7-E5A8-4466-9746-CDB43448CCE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.Client", "DatabaseApps.Client\DatabaseApps.Client.csproj", "{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D38A66EF-1298-4F9D-89B9-528CA2CC5C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38A66EF-1298-4F9D-89B9-528CA2CC5C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38A66EF-1298-4F9D-89B9-528CA2CC5C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D38A66EF-1298-4F9D-89B9-528CA2CC5C32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D9A3CE7-E5A8-4466-9746-CDB43448CCE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D9A3CE7-E5A8-4466-9746-CDB43448CCE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D9A3CE7-E5A8-4466-9746-CDB43448CCE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D9A3CE7-E5A8-4466-9746-CDB43448CCE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
