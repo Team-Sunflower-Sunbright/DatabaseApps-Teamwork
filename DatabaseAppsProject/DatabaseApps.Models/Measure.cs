@@ -12,7 +12,7 @@
             this.products = new HashSet<Product>();
         }
 
-        public int MeasureId
+        public int Id
         {
             get;
             set;

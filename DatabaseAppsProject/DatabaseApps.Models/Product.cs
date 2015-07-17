@@ -1,8 +1,17 @@
 ﻿namespace DatabaseApps.Models
 {
+    using System.Collections.Generic;
+
     public class Product
     {
-        public int ProductId
+        private ICollection<Sale> sales;
+
+        public Product()
+        {
+            this.sales = new HashSet<Sale>();
+        }
+
+        public int Id
         {
             get;
             set;
@@ -42,6 +51,14 @@
         {
             get;
             set;
+        }
+
+        public Sale SaleId { get; set; }
+
+        public virtual ICollection<Sale> Sales
+        {
+            get { return this.sales; }
+            set { this.sales = value; }
         }
     }
 }
