@@ -3,6 +3,9 @@ namespace DatabaseApps.MySql
     using System;
     using System.Data.Entity;
     using System.Linq;
+    using global::MySql.Data.Entity;
+    using Initializations;
+    using Migrations;
     using Models;
 
     public class MySQLContext : DbContext
@@ -16,17 +19,25 @@ namespace DatabaseApps.MySql
         public MySQLContext()
             : base("name=MySQLContext")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MySQLContext, Configuration>());
         }
 
-        // Add a DbSet for each entity type that you want to include in your model. For more information 
-        // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
+        static MySQLContext()
+        {
+            DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
+        }
 
-         public virtual DbSet<Vendor> Vendors { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            Database.SetInitializer(new DbInitializer());
+        }
+
+        public virtual DbSet<Vendor> Vendors { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Sale> Sales { get; set; }
+        public virtual DbSet<Expense> Expenses { get; set; }
+
     }
-
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
 }

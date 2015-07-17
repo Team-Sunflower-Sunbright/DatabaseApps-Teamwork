@@ -11,7 +11,7 @@
 
         public decimal TotalIncome { get; set; }
 
-        public Product ProductId { get; set; }
+        public int ProductId { get; set; }
 
         public virtual Product Product { get; set; }
     }

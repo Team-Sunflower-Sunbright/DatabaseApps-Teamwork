@@ -1,5 +1,8 @@
 ﻿namespace DatabaseApps.Client
 {
+    using System;
+    using System.Linq;
+
     public class ApplicationMain
     {
         static void Main()

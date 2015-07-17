@@ -55,8 +55,6 @@
             set;
         }
 
-        public Sale SaleId { get; set; }
-
         public virtual ICollection<Sale> Sales
         {
             get { return this.sales; }

@@ -39,8 +39,6 @@
             }
         }
 
-        public int ExpenseId { get; set; }
-
         public virtual ICollection<Expense> Expenses
         {
             get { return this.expenses; }
