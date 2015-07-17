@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.Oracle", "Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.Client", "DatabaseApps.Client\DatabaseApps.Client.csproj", "{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabasseApps.SQLite", "DatabasseApps.SQLite\DatabasseApps.SQLite.csproj", "{2E0CB561-F092-4B7E-8B83-25F3CE5A1710}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D2518A2-31B2-40D3-88CA-57924B1AA1BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E0CB561-F092-4B7E-8B83-25F3CE5A1710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E0CB561-F092-4B7E-8B83-25F3CE5A1710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E0CB561-F092-4B7E-8B83-25F3CE5A1710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E0CB561-F092-4B7E-8B83-25F3CE5A1710}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
