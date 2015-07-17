@@ -13,7 +13,7 @@
             this.context = new SQLiteContext();
         }
 
-        public SQLiteContext SqLiteContext
+        public SQLiteContext SQLiteContext
         {
             get
             {

@@ -1,10 +1,6 @@
 ﻿namespace DatabaseApps.Client
 {
-    using System;
-    using System.Linq;
-    using DatabasseApps.SQLite;
-
-    class ApplicationMain
+    public class ApplicationMain
     {
         static void Main()
         {
@@ -21,6 +17,11 @@
             ////{
             ////    Console.WriteLine("{0} {1}%", product.Key, product.Value);
             ////}
+
+            // MySQL
+            ////var mysqlManager = new MysqlDBManager();
+            ////var testConnection = mysqlManager.MySqlContext.Vendors.Count();
+            ////Console.WriteLine(testConnection);
         }
     }
 }

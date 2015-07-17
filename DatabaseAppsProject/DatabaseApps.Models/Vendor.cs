@@ -1,6 +1,7 @@
 ﻿namespace DatabaseApps.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Vendor
     {
@@ -13,6 +14,7 @@
             this.expenses = new HashSet<Expense>();
         }
 
+        [Key]
         public int Id
         {
             get;

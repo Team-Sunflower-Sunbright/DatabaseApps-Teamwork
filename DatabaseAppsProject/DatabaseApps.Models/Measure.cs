@@ -2,6 +2,7 @@
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Measure
     {
@@ -12,6 +13,7 @@
             this.products = new HashSet<Product>();
         }
 
+        [Key]
         public int Id
         {
             get;

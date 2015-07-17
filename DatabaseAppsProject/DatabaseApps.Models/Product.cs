@@ -1,6 +1,7 @@
 ﻿namespace DatabaseApps.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Product
     {
@@ -11,6 +12,7 @@
             this.sales = new HashSet<Sale>();
         }
 
+        [Key]
         public int Id
         {
             get;
