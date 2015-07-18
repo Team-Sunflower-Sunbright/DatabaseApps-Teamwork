@@ -1,4 +1,4 @@
-﻿namespace DatabaseApps.Client
+﻿namespace DatabaseApps.Client.DbManagers
 {
     using MySql;
 

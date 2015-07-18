@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Initializations\DbInitializer.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MySQLContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

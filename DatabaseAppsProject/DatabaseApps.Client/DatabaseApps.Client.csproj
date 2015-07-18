@@ -88,11 +88,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MysqlDBManager.cs" />
-    <Compile Include="OracleDBManager.cs" />
+    <Compile Include="DbManagers\MysqlDBManager.cs" />
+    <Compile Include="DbManagers\OracleDBManager.cs" />
     <Compile Include="ApplicationMain.cs" />
+    <Compile Include="Exporters\ExcelExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLiteDBManager.cs" />
+    <Compile Include="DbManagers\SQLiteDBManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

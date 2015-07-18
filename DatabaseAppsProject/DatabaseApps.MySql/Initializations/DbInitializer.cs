@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Data.Entity.Migrations;
     using Models;
 
     public class DbInitializer : CreateDatabaseIfNotExists<MySQLContext>
@@ -15,13 +16,18 @@
                 {
                     Name = "Some"
                 },
-                Name = "Beer “Beck’s”",
+                Name = "Chocolate “Milka”",
                 Price = 10m,
                 Sales = new List<Sale>()
                 {
                     new Sale()
                     {
-                        TotalIncome = 135.70m,
+                        TotalIncome = 35.70m,
+                        TotalSold = 10
+                    },
+                    new Sale()
+                    {
+                        TotalIncome = 100m,
                         TotalSold = 10
                     }
                 },
@@ -32,7 +38,12 @@
                     {
                         new Expense()
                         {
-                            Amount = 30m,
+                            Amount = 15m,
+                            Period = DateTime.Now
+                        },
+                        new Expense()
+                        {
+                            Amount = 15m,
                             Period = DateTime.Now
                         }
                     }
@@ -103,7 +114,7 @@
                 }
             };
 
-            context.Products.Add(product3);
+            context.Products.AddOrUpdate(product3);
 
             context.SaveChanges();
 
