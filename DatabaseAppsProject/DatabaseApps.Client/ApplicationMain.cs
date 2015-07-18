@@ -17,7 +17,7 @@
             // oracleManager.ImportVendorsFromCSVFile("SeedFiles/Vendors.txt");
             // oracleManager.ImportProductsFromCSVFile("SeedFiles/Products.txt");
 
-            ExportToExcel();
+            // ExportToExcel();
         }
 
         /// <summary>
@@ -45,6 +45,7 @@
             // {
             //     Console.WriteLine("{0} {1}%", product.Key, product.Value);
             // }
+            Console.WriteLine("SQLite data gathered.");
 
             // MySQL
             var mysqlManager = new MysqlDBManager();
@@ -61,6 +62,7 @@
                     Expense = v.Expenses.Select(e => e.Amount)
                 })
                 .ToList();
+            Console.WriteLine("MySQL data gathered.");
 
             var excelReportDatas = new List<ExcelReportData>();
 
@@ -95,6 +97,7 @@
             });
 
             // excelReportDatas.ForEach(Console.WriteLine);
+            Console.WriteLine("Excel report issued.");
 
             ExcelExporter.ExportToExcel(excelReportDatas);
         }
