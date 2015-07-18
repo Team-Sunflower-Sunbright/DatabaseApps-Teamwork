@@ -96,6 +96,7 @@
     <Compile Include="DbManagers\OracleDBManager.cs" />
     <Compile Include="ApplicationMain.cs" />
     <Compile Include="Exporters\ExcelExporter.cs" />
+    <Compile Include="Exporters\SQLiteAndMySQLExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbManagers\SQLiteDBManager.cs" />
   </ItemGroup>
