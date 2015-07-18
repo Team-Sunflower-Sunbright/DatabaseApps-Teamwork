@@ -30,6 +30,12 @@
             get;
             set;
         }
+		
+		public int Quantity
+        {
+            get;
+            set;
+        }
 
         public virtual Measure Measure
         {
