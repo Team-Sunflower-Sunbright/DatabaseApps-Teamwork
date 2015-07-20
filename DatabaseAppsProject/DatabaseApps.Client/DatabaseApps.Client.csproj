@@ -97,6 +97,7 @@
     <Compile Include="ApplicationMain.cs" />
     <Compile Include="Exporters\ExcelExporter.cs" />
     <Compile Include="Exporters\SQLiteAndMySQLExporter.cs" />
+    <Compile Include="Exporters\XMLExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbManagers\SQLiteDBManager.cs" />
   </ItemGroup>

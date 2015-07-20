@@ -4,13 +4,14 @@
     using System.Linq;
     using System.Text;
     using System.Xml;
-    using CodeFirst;
+    using MsSql;
 
     public static class XMLExporter
     {
         public static void ExportToXML(DateTime startDate, DateTime endDate)
         {
-            var dbContext = new DatabaseAppsModel();
+            const string dateFormat = "dd-MMM-yyy";
+            var dbContext = new MsSqlContext();
 
             var vendors = dbContext.Vendors.Select(v => new
             {
@@ -26,26 +27,39 @@
             settings.Encoding = Encoding.UTF8;
             settings.Indent = true;
 
-
-            using (XmlWriter writer = XmlWriter.Create("vendors.xml", settings))
+            string fileName =
+                @"vendorsSales-(" +
+                startDate.Date.ToString(dateFormat) + ")-(" +
+                endDate.Date.ToString(dateFormat) + ").xml";
+            
+            using (XmlWriter writer = XmlWriter.Create(fileName, settings))
             {
                 writer.WriteStartDocument();
-                writer.WriteStartElement("sales");
 
-                foreach (var vendor in vendors)
+                if (vendors.FirstOrDefault() != null)
                 {
-                    writer.WriteStartElement("sale");
-                    writer.WriteAttributeString("vendor", vendor.vendor);
-                    foreach (var vs in vendor.summary)
+                    writer.WriteStartElement("sales");
+
+                    foreach (var vendor in vendors)
                     {
-                        writer.WriteStartElement("summary");
-                        writer.WriteAttributeString("date", vs.date.Date.ToString("dd-MMM-yyy"));
-                        writer.WriteAttributeString("total-sum", vs.totalSum.ToString());
+                        writer.WriteStartElement("sale");
+                        writer.WriteAttributeString("vendor", vendor.vendor);
+                        foreach (var vs in vendor.summary)
+                        {
+                            writer.WriteStartElement("summary");
+                            writer.WriteAttributeString("date", vs.date.Date.ToString(dateFormat));
+                            writer.WriteAttributeString("total-sum", vs.totalSum.ToString());
+                            writer.WriteEndElement();
+                        }
                         writer.WriteEndElement();
                     }
-                    writer.WriteEndElement();
                 }
-
+                else
+                {
+                    writer.WriteStartElement("Error");
+                    writer.WriteAttributeString("errorMsg", "No data in current period!");
+                }
+                
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
                 writer.Close();

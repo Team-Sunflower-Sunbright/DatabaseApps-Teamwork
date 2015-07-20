@@ -1,4 +1,6 @@
-﻿namespace DatabaseApps.Client
+﻿using System;
+
+namespace DatabaseApps.Client
 {
     using DatabaseApps.MsSql;
     using System.Data.Entity;
@@ -10,6 +12,7 @@
     {
         static void Main()
         {
+
             // Oracle Management Things
             // OracleDBManager oracleManager = new OracleDBManager();
             // oracleManager.ImportMeasuresFromCSVFile("SeedFiles/Measures.txt");
