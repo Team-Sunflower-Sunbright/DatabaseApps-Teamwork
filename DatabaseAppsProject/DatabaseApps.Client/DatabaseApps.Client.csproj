@@ -109,6 +109,10 @@
       <Project>{d38a66ef-1298-4f9d-89b9-528ca2cc5c32}</Project>
       <Name>DatabaseApps.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DatabaseApps.MsSql\DatabaseApps.MsSql.csproj">
+      <Project>{dafdfd6b-d298-4f07-83a7-5f50f04a0ca9}</Project>
+      <Name>DatabaseApps.MsSql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DatabaseApps.MySql\DatabaseApps.MySql.csproj">
       <Project>{cc1036bb-041d-495d-acb3-8069edbe671e}</Project>
       <Name>DatabaseApps.MySql</Name>

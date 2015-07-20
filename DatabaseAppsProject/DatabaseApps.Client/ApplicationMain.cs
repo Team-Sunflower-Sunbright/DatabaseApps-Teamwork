@@ -1,5 +1,8 @@
 ﻿namespace DatabaseApps.Client
 {
+    using DatabaseApps.MsSql;
+    using System.Data.Entity;
+    using System.Collections.Generic;
     using DbManagers;
     using Exporters;
 
@@ -14,6 +17,12 @@
             // oracleManager.ImportProductsFromCSVFile("SeedFiles/Products.txt");
 
             // ExportToExcel();
+
+            //Create MSSQL Database
+            //var msSqlContext = new MsSqlContext();
+            //foreach (var product in msSqlContext.Products)
+            //{
+            //}
         }
 
         /// <summary>
