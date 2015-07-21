@@ -5,8 +5,11 @@ namespace DatabaseApps.Client
     using DatabaseApps.MsSql;
     using System.Data.Entity;
     using System.Collections.Generic;
+    using System.Linq;
     using DbManagers;
     using Exporters;
+    using Models;
+    using MySql;
 
     public class ApplicationMain
     {
@@ -22,10 +25,6 @@ namespace DatabaseApps.Client
             // ExportToExcel();
 
             //Create MSSQL Database
-            //var msSqlContext = new MsSqlContext();
-            //foreach (var product in msSqlContext.Products)
-            //{
-            //}
         }
 
         /// <summary>
