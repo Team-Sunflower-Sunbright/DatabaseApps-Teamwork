@@ -8,6 +8,7 @@ namespace DatabaseApps.Client
     using System.Linq;
     using DbManagers;
     using Exporters;
+    using Importers;
     using Models;
     using MySql;
 
@@ -22,22 +23,20 @@ namespace DatabaseApps.Client
             // oracleManager.ImportVendorsFromCSVFile("SeedFiles/Vendors.txt");
             // oracleManager.ImportProductsFromCSVFile("SeedFiles/Products.txt");
 
-            //ExportToExcel();
+            //SeedDataToMySql();
 
-            //Create MSSQL Database
+            //ExportToExcel();
+            //var mysqlManager = new MysqlDBManager();
+            //var mysqlVendors = mysqlManager.MySqlContext.Vendors.Count();
         }
 
         /// <summary>
         /// Problem 7
         /// </summary>
-        private static void SeedDataToMySQL()
+        private static void SeedDataToMySql()
         {
-            // Insert MSSQL context and select data
-
-            var mysqlManager = new MysqlDBManager();
-
-            // Feed the data
-            // mysqlManager.MySqlContext.Products.Add();
+            var products = MsSQLExporter.ExportProducts();
+            MySqlImporter.ImportToMySql(products);
         }
 
         /// <summary>
@@ -45,8 +44,9 @@ namespace DatabaseApps.Client
         /// </summary>
         private static void ExportToExcel()
         {
-            var excelReportData = SQLiteAndMySQLExporter.GetReportDate();
-            ExcelExporter.ExportToExcel(excelReportData);
+            var mySqlData = MySqlExporter.GetAllVendors();
+            var sqliteData = SQliteExporter.GetAllProducts();
+            ExcelExporter.ExportToExcel(mySqlData, sqliteData);
         }
     }
 }

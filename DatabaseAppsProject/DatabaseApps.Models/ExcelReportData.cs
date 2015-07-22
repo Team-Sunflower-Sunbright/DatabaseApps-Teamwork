@@ -1,5 +1,8 @@
 ﻿namespace DatabaseApps.Models
 {
+    /// <summary>
+    /// Used to aggregate data for easier Excel export.
+    /// </summary>
     public class ExcelReportData
     {
         public string VendorName { get; set; }

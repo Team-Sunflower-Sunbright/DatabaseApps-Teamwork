@@ -92,12 +92,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbManagers\MsSqlDBManager.cs" />
     <Compile Include="DbManagers\MysqlDBManager.cs" />
     <Compile Include="DbManagers\OracleDBManager.cs" />
     <Compile Include="ApplicationMain.cs" />
     <Compile Include="Exporters\ExcelExporter.cs" />
-    <Compile Include="Exporters\SQLiteAndMySQLExporter.cs" />
+    <Compile Include="Exporters\MsSQLExporter.cs" />
+    <Compile Include="Exporters\MySqlExporter.cs" />
+    <Compile Include="Exporters\SQliteExporter.cs" />
     <Compile Include="Exporters\XMLExporter.cs" />
+    <Compile Include="Importers\MySqlImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbManagers\SQLiteDBManager.cs" />
   </ItemGroup>

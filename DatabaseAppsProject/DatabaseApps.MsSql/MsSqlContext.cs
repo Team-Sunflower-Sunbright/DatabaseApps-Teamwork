@@ -1,15 +1,15 @@
 namespace DatabaseApps.MsSql
 {
-    using DatabaseApps.Models;
-    using System;
     using System.Data.Entity;
-    using System.Linq;
+    using Migrations;
+    using Models;
 
     public class MsSqlContext : DbContext
     {
         public MsSqlContext()
             : base("name=MsSqlContext")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlContext, Configuration>());
         }
 
         public IDbSet<Product> Products { get; set; }
