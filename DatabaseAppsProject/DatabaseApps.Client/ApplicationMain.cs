@@ -22,7 +22,7 @@ namespace DatabaseApps.Client
             // oracleManager.ImportVendorsFromCSVFile("SeedFiles/Vendors.txt");
             // oracleManager.ImportProductsFromCSVFile("SeedFiles/Products.txt");
 
-            // ExportToExcel();
+            //ExportToExcel();
 
             //Create MSSQL Database
         }

@@ -8,7 +8,7 @@
         [Key]
         public int Id { get; set; }
 
-        public DateTime Period { get; set; }
+        public DateTime Date { get; set; }
 
         public decimal Amount { get; set; }
 

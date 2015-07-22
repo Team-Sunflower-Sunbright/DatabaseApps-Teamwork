@@ -26,7 +26,7 @@
                     Products = v.Products.Select(p => new
                     {
                         ProductName = p.Name,
-                        Income = p.Sales.Select(s => s.TotalIncome).Sum()
+                        Income = p.Incomes.Select(s => s.Quantity * (double)p.Price).Sum()
                     }),
                     Expense = v.Expenses.Select(e => e.Amount)
                 })
@@ -48,8 +48,8 @@
                         tax = (decimal)sqliteProducts[p.ProductName];
                     }
 
-                    totalTaxes += p.Income * tax / 100;
-                    totalIncome += p.Income;
+                    totalTaxes += (decimal)p.Income * tax / 100;
+                    totalIncome += (decimal)p.Income;
                 });
 
                 var financialResult = totalIncome - totalTaxes - v.Expense.Sum();

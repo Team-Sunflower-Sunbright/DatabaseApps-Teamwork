@@ -18,17 +18,15 @@
                 },
                 Name = "Chocolate “Milka”",
                 Price = 10m,
-                Sales = new List<Sale>()
+                Incomes = new List<Income>()
                 {
-                    new Sale()
+                    new Income()
                     {
-                        TotalIncome = 35.70m,
-                        TotalSold = 10
+                        Quantity = 10
                     },
-                    new Sale()
+                    new Income()
                     {
-                        TotalIncome = 100m,
-                        TotalSold = 10
+                        Quantity = 10
                     }
                 },
                 Vendor = new Vendor()
@@ -39,12 +37,12 @@
                         new Expense()
                         {
                             Amount = 15m,
-                            Period = DateTime.Now
+                            Date = DateTime.Now
                         },
                         new Expense()
                         {
                             Amount = 15m,
-                            Period = DateTime.Now
+                            Date = DateTime.Now
                         }
                     }
                 }
@@ -60,12 +58,11 @@
                 },
                 Name = "Beer “Zagorka”",
                 Price = 10m,
-                Sales = new List<Sale>()
+                Incomes = new List<Income>()
                 {
-                    new Sale()
+                    new Income()
                     {
-                        TotalIncome = 872.19m,
-                        TotalSold = 10
+                        Quantity = 10
                     }
                 },
                 Vendor = new Vendor()
@@ -76,7 +73,7 @@
                         new Expense()
                         {
                             Amount = 120m,
-                            Period = DateTime.Now
+                            Date = DateTime.Now
                         }
                     }
                 }
@@ -92,12 +89,11 @@
                 },
                 Name = "Vodka “Targovishte”",
                 Price = 10m,
-                Sales = new List<Sale>()
+                Incomes = new List<Income>()
                 {
-                    new Sale()
+                    new Income()
                     {
-                        TotalIncome = 1155.90m,
-                        TotalSold = 10
+                        Quantity = 10
                     }
                 },
                 Vendor = new Vendor()
@@ -108,7 +104,7 @@
                         new Expense()
                         {
                             Amount = 200m,
-                            Period = DateTime.Now
+                            Date = DateTime.Now
                         }
                     }
                 }

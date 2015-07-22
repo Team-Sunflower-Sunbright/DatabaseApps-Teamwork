@@ -53,7 +53,7 @@
     <Compile Include="Measure.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sale.cs" />
+    <Compile Include="Income.cs" />
     <Compile Include="Vendor.cs" />
   </ItemGroup>
   <ItemGroup>

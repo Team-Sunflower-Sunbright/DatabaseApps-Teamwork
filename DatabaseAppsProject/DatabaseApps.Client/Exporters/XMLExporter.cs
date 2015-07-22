@@ -16,9 +16,9 @@
             var vendors = dbContext.Vendors.Select(v => new
             {
                 vendor = v.Name,
-                summary = v.Expenses.Where(e => e.Period >= startDate && e.Period <= endDate).Select(e => new
+                summary = v.Expenses.Where(e => e.Date >= startDate && e.Date <= endDate).Select(e => new
                 {
-                    date = e.Period,
+                    date = e.Date,
                     totalSum = e.Amount
                 })
             });

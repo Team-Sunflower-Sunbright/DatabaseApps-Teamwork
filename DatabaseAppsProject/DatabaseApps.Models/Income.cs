@@ -1,15 +1,16 @@
 ﻿namespace DatabaseApps.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class Sale
+    public class Income
     {
         [Key]
         public int Id { get; set; }
 
-        public int TotalSold { get; set; }
+        public double Quantity { get; set; }
 
-        public decimal TotalIncome { get; set; }
+        public DateTime Date { get; set; }
 
         public int ProductId { get; set; }
 

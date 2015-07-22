@@ -5,11 +5,11 @@
 
     public class Product
     {
-        private ICollection<Sale> sales;
+        private ICollection<Income> sales;
 
         public Product()
         {
-            this.sales = new HashSet<Sale>();
+            this.sales = new HashSet<Income>();
         }
 
         [Key]
@@ -61,7 +61,7 @@
             set;
         }
 
-        public virtual ICollection<Sale> Sales
+        public virtual ICollection<Income> Incomes
         {
             get { return this.sales; }
             set { this.sales = value; }
