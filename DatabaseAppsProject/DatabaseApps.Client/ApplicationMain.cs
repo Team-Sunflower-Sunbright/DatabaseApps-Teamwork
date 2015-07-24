@@ -32,9 +32,8 @@ namespace DatabaseApps.Client
             // Export Data from Oracle to MS SQL Server
             // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
 
-            // !!!!!!!!!! This fails !!!!!!!!!!!!!!
-            //MySQLContext mysqlContext = new MySQLContext();
-            //sqlManager.ExportDataToMySQLContext(mysqlContext);
+            // Export Data from MS SQL to MySQL
+            //SeedDataToMySql();
             
             // Export Data to Excel
             //ExportToExcel();
@@ -47,7 +46,7 @@ namespace DatabaseApps.Client
             //JsonExporter.ExportSalesReportsToJson(dbContext, startDate, endDate);
             //MongoImporter.ImportSalesReportsIntoDatabase();
 
-            CreateSaleReport("sales report.pdf");
+            //CreateSaleReport("sales report.pdf");
         }
 
         /// <summary>
