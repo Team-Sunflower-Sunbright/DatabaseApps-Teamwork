@@ -1,14 +1,50 @@
-﻿namespace DatabaseApps.MySql.Initializations
+﻿namespace DatabaseApps.Client.Exporters
 {
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Linq;
+    using DbManagers;
     using Models;
+    using MsSql;
 
-    public class DbInitializer : CreateDatabaseIfNotExists<MySQLContext>
+    /// <summary>
+    /// Exports data from MsSQL server.
+    /// </summary>
+    public static class MsSQLExporter
     {
-        protected override void Seed(MySQLContext context)
+        /// <summary>
+        /// Export all products. Including their Incomes, Measures, Vendor and Vendor's Expenses.
+        /// </summary>
+        /// <returns>All products and their data.</returns>
+        public static IEnumerable<Product> ExportProducts()
+        {
+            var msssqlManager = new MsSqlDBManager();
+            var msSqlContext = msssqlManager.MsSqlContext;
+
+            // When the other parts of the project are placed comment the next lines.
+            if (!msSqlContext.Products.Any())
+            {
+                SeedMsSql(msSqlContext);
+            }
+
+            var products = msSqlContext.Products
+                .Include(p => p.Incomes)
+                .Include(p => p.Measure)
+                .Include(p => p.Vendor)
+                .Include(p => p.Vendor.Expenses)
+                .ToList();
+            Console.WriteLine("MS SQL Server data gathered.");
+
+            return products;
+        }
+
+        /// <summary>
+        /// Seed simple data to MsSql in case it is empty. For test purposes.
+        /// </summary>
+        /// <param name="context">MsSQL context</param>
+        private static void SeedMsSql(MsSqlContext context)
         {
             var product = new Product()
             {
@@ -22,11 +58,13 @@
                 {
                     new Income()
                     {
-                        Quantity = 10
+                        Quantity = 10,
+                        Date = DateTime.Now
                     },
                     new Income()
                     {
-                        Quantity = 10
+                        Quantity = 10,
+                        Date = DateTime.Now
                     }
                 },
                 Vendor = new Vendor()
@@ -62,7 +100,8 @@
                 {
                     new Income()
                     {
-                        Quantity = 10
+                        Quantity = 10,
+                        Date = DateTime.Now
                     }
                 },
                 Vendor = new Vendor()
@@ -93,7 +132,8 @@
                 {
                     new Income()
                     {
-                        Quantity = 10
+                        Quantity = 10,
+                        Date = DateTime.Now
                     }
                 },
                 Vendor = new Vendor()
@@ -114,7 +154,7 @@
 
             context.SaveChanges();
 
-            base.Seed(context);
+            Console.WriteLine("MS SQL Server seeded with sample data.");
         }
     }
 }

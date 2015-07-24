@@ -1,7 +1,5 @@
 ﻿namespace DatabaseApps.Client.DbManagers
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using DatabasseApps.SQLite;
 
     public class SQLiteDBManager
@@ -19,19 +17,6 @@
             {
                 return this.context;
             }
-        }
-
-        public Dictionary<string, double?> GetAllProducts()
-        {
-            var products = this.context.Taxes
-                .Select(p => new
-                {
-                    p.ProductName,
-                    p.TaxRate
-                })
-                .ToDictionary(p => p.ProductName, p => p.TaxRate);
-
-            return products;
         }
     }
 }

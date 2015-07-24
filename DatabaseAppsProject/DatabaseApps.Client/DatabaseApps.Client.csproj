@@ -43,6 +43,18 @@
       <HintPath>..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.0.1\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB.Driver.2.0.1\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.0.1\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy">
+      <HintPath>..\packages\mongocsharpdriver.2.0.1\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -54,6 +66,10 @@
     <Reference Include="MySql.Web, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Web.6.9.7\lib\net45\MySql.Web.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -92,13 +108,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbManagers\MsSqlDBManager.cs" />
     <Compile Include="DbManagers\MysqlDBManager.cs" />
     <Compile Include="DbManagers\SQLServerDBManager.cs" />
     <Compile Include="DbManagers\OracleDBManager.cs" />
     <Compile Include="ApplicationMain.cs" />
     <Compile Include="Exporters\ExcelExporter.cs" />
-    <Compile Include="Exporters\SQLiteAndMySQLExporter.cs" />
+    <Compile Include="Exporters\JsonExporter.cs" />
+    <Compile Include="Exporters\MsSQLExporter.cs" />
+    <Compile Include="Exporters\MySqlExporter.cs" />
+    <Compile Include="Exporters\SQliteExporter.cs" />
     <Compile Include="Exporters\XMLExporter.cs" />
+    <Compile Include="Importers\MongoImporter.cs" />
+    <Compile Include="Importers\MySqlImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbManagers\SQLiteDBManager.cs" />
   </ItemGroup>
@@ -110,6 +132,10 @@
     <ProjectReference Include="..\DatabaseApps.Models\DatabaseApps.Models.csproj">
       <Project>{d38a66ef-1298-4f9d-89b9-528ca2cc5c32}</Project>
       <Name>DatabaseApps.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseApps.MongoDB\DatabaseApps.MongoDB.csproj">
+      <Project>{f28b15b2-8139-4632-8006-c2ccb8b0f9d8}</Project>
+      <Name>DatabaseApps.MongoDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\DatabaseApps.MsSql\DatabaseApps.MsSql.csproj">
       <Project>{dafdfd6b-d298-4f07-83a7-5f50f04a0ca9}</Project>

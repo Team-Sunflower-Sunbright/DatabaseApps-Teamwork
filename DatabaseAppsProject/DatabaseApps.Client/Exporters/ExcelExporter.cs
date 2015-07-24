@@ -3,12 +3,63 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using Models;
     using OfficeOpenXml;
 
     public static class ExcelExporter
     {
-        public static void ExportToExcel(List<ExcelReportData> data)
+        public static void ExportToExcel(IEnumerable<MySqlExportData> mySqlData, IDictionary<string, double?> sqliteData)
+        {
+            var data = GatherReportData(mySqlData, sqliteData);
+            ExportDataToExcel(data);
+        }
+
+        private static IEnumerable<ExcelReportData> GatherReportData(IEnumerable<MySqlExportData> mySqlData,
+            IDictionary<string, double?> sqliteData)
+        {
+            var excelReportData = new List<ExcelReportData>();
+
+            foreach (var vendor in mySqlData)
+            {
+                var totalTaxes = 0m;
+                var totalIncome = 0m;
+                vendor.Products.ToList().ForEach(p =>
+                {
+                    var tax = 0m;
+                    if (sqliteData.ContainsKey(p.Key))
+                    {
+                        tax = (decimal)sqliteData[p.Key];
+                    }
+
+                    totalTaxes += (decimal)p.Value * tax / 100;
+                    totalIncome += (decimal)p.Value;
+                });
+
+                var financialResult = totalIncome - totalTaxes - vendor.Expenses;
+
+                var data = new ExcelReportData()
+                {
+                    FinancialResult = financialResult,
+                    TotalExpense = vendor.Expenses,
+                    TotalIncome = totalIncome,
+                    TotalTaxes = totalTaxes,
+                    VendorName = vendor.VendorName
+                };
+
+                excelReportData.Add(data);
+            }
+
+            Console.WriteLine("Excel report issued.");
+
+            return excelReportData;
+        }
+
+        /// <summary>
+        /// Exports to Excel aggregated data as ExcelReportData.
+        /// </summary>
+        /// <param name="data">Selected data as ExcelReportData.</param>
+        private static void ExportDataToExcel(IEnumerable<ExcelReportData> data)
         {
             using (var excel = new ExcelPackage())
             {

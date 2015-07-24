@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.Models", "DatabaseApps.Models\DatabaseApps.Models.csproj", "{D38A66EF-1298-4F9D-89B9-528CA2CC5C32}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.MySql", "DatabaseApps.MySql\DatabaseApps.MySql.csproj", "{CC1036BB-041D-495D-ACB3-8069EDBE671E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.MsSql", "DatabaseApps.MsSql\DatabaseApps.MsSql.csproj", "{DAFDFD6B-D298-4F07-83A7-5F50F04A0CA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApps.MongoDB", "DatabaseApps.MongoDB\DatabaseApps.MongoDB.csproj", "{F28B15B2-8139-4632-8006-C2CCB8B0F9D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{DAFDFD6B-D298-4F07-83A7-5F50F04A0CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAFDFD6B-D298-4F07-83A7-5F50F04A0CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAFDFD6B-D298-4F07-83A7-5F50F04A0CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F28B15B2-8139-4632-8006-C2CCB8B0F9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28B15B2-8139-4632-8006-C2CCB8B0F9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28B15B2-8139-4632-8006-C2CCB8B0F9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28B15B2-8139-4632-8006-C2CCB8B0F9D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

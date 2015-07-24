@@ -8,6 +8,7 @@ namespace DatabaseApps.Client
     using System.Linq;
     using DbManagers;
     using Exporters;
+    using Importers;
     using Models;
     using MySql;
 
@@ -37,21 +38,23 @@ namespace DatabaseApps.Client
             
             // Export Data to Excel
             // ExportToExcel();
+            
+            //Anton : Test of the JsonExport and import into Mongo
+            //var dbContext = new MsSqlContext();
+            //var startDate = new DateTime();
+            //var endDate = new DateTime();
 
-            //Create MSSQL Database
+            //JsonExporter.ExportSalesReportsToJson(dbContext, startDate, endDate);
+            //MongoImporter.ImportSalesReportsIntoDatabase();
         }
 
         /// <summary>
         /// Problem 7
         /// </summary>
-        private static void SeedDataToMySQL()
+        private static void SeedDataToMySql()
         {
-            // Insert MSSQL context and select data
-
-            var mysqlManager = new MysqlDBManager();
-
-            // Feed the data
-            // mysqlManager.MySqlContext.Products.Add();
+            var products = MsSQLExporter.ExportProducts();
+            MySqlImporter.ImportToMySql(products);
         }
 
         /// <summary>
@@ -59,8 +62,9 @@ namespace DatabaseApps.Client
         /// </summary>
         private static void ExportToExcel()
         {
-            var excelReportData = SQLiteAndMySQLExporter.GetReportDate();
-            ExcelExporter.ExportToExcel(excelReportData);
+            var mySqlData = MySqlExporter.GetAllVendors();
+            var sqliteData = SQliteExporter.GetAllProducts();
+            ExcelExporter.ExportToExcel(mySqlData, sqliteData);
         }
     }
 }
