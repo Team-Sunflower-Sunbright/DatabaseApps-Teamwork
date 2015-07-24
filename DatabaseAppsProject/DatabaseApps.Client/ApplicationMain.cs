@@ -22,22 +22,21 @@ namespace DatabaseApps.Client
             // oracleManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
             // oracleManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
 
-            Database.SetInitializer(new DropCreateDatabaseAlways<MySQLContext>());
-
             // SQL Server Manager - Use this to import data to SQL Server
-            // SQLServerDBManager sqlManager = new SQLServerDBManager();
-            //sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
-            //sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
-            //sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
+            SQLServerDBManager sqlManager = new SQLServerDBManager();
+            sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
+            sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
+            sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
             
             // Export Data from Oracle to MS SQL Server
             // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
 
-            // MySQLContext mysqlContext = new MySQLContext();
-            // sqlManager.ExportDataToMySQLContext(mysqlContext);
+            // !!!!!!!!!! This fails !!!!!!!!!!!!!!
+            //MySQLContext mysqlContext = new MySQLContext();
+            //sqlManager.ExportDataToMySQLContext(mysqlContext);
             
             // Export Data to Excel
-            // ExportToExcel();
+            ExportToExcel();
             
             //Anton : Test of the JsonExport and import into Mongo
             //var dbContext = new MsSqlContext();

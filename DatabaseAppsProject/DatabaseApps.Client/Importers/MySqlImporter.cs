@@ -59,7 +59,6 @@
             {
                 Name = product.Name,
                 Price = product.Price,
-                Quantity = product.Quantity,
                 Incomes = incomes,
                 Measure = new Measure() { Name = product.Measure.Name },
                 Vendor = new Vendor()

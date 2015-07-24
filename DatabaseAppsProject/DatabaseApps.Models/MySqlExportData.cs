@@ -9,7 +9,7 @@
     {
         public string VendorName { get; set; }
 
-        public IDictionary<string, double> Products { get; set; }
+        public Dictionary<string, double?> Products { get; set; }
 
         public decimal Expenses { get; set; }
     }
