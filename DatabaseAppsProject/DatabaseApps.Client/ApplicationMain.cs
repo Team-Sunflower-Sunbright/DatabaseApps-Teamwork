@@ -28,6 +28,16 @@ namespace DatabaseApps.Client
             //ExportToExcel();
             //var mysqlManager = new MysqlDBManager();
             //var mysqlVendors = mysqlManager.MySqlContext.Vendors.Count();
+
+
+            
+            //Anton : Test of the JsonExport and import into Mongo
+            //var dbContext = new MsSqlContext();
+            //var startDate = new DateTime();
+            //var endDate = new DateTime();
+
+            //JsonExporter.ExportSalesReportsToJson(dbContext, startDate, endDate);
+            //MongoImporter.ImportSalesReportsIntoDatabase();
         }
 
         /// <summary>
