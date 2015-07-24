@@ -7,6 +7,7 @@ namespace DatabaseApps.MsSql.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
     }
 }

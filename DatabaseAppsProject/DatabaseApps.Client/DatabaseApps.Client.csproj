@@ -43,6 +43,12 @@
       <HintPath>..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\packages\itextsharp.pdfa.5.5.6\lib\itextsharp.pdfa.dll</HintPath>
+    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\MongoDB.Bson.2.0.1\lib\net45\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -117,6 +123,8 @@
     <Compile Include="Exporters\JsonExporter.cs" />
     <Compile Include="Exporters\MsSQLExporter.cs" />
     <Compile Include="Exporters\MySqlExporter.cs" />
+    <Compile Include="Exporters\PDF\GroupingByDate.cs" />
+    <Compile Include="Exporters\PDF\PDFSalesReport.cs" />
     <Compile Include="Exporters\SQliteExporter.cs" />
     <Compile Include="Exporters\XMLExporter.cs" />
     <Compile Include="Importers\MongoImporter.cs" />

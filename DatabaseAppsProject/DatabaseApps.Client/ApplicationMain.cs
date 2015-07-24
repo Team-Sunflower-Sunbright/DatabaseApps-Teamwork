@@ -11,6 +11,7 @@ namespace DatabaseApps.Client
     using Importers;
     using Models;
     using MySql;
+    using DatabaseApps.Client.Exporters.PDF;
 
     public class ApplicationMain
     {
@@ -23,10 +24,10 @@ namespace DatabaseApps.Client
             // oracleManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
 
             // SQL Server Manager - Use this to import data to SQL Server
-            SQLServerDBManager sqlManager = new SQLServerDBManager();
-            sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
-            sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
-            sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
+            //SQLServerDBManager sqlManager = new SQLServerDBManager();
+            //sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
+            //sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
+            //sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
             
             // Export Data from Oracle to MS SQL Server
             // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
@@ -36,7 +37,7 @@ namespace DatabaseApps.Client
             //sqlManager.ExportDataToMySQLContext(mysqlContext);
             
             // Export Data to Excel
-            ExportToExcel();
+            //ExportToExcel();
             
             //Anton : Test of the JsonExport and import into Mongo
             //var dbContext = new MsSqlContext();
@@ -45,6 +46,8 @@ namespace DatabaseApps.Client
 
             //JsonExporter.ExportSalesReportsToJson(dbContext, startDate, endDate);
             //MongoImporter.ImportSalesReportsIntoDatabase();
+
+            CreateSaleReport("sales report.pdf");
         }
 
         /// <summary>
@@ -64,6 +67,20 @@ namespace DatabaseApps.Client
             var mySqlData = MySqlExporter.GetAllVendors();
             var sqliteData = SQliteExporter.GetAllProducts();
             ExcelExporter.ExportToExcel(mySqlData, sqliteData);
+        }
+
+        private static void CreateSaleReport(string path)
+        {
+            var context = new MsSqlContext();
+            IQueryable<IGrouping<GroupingByDate, Income>> sales = context.Incomes
+               .GroupBy(p => new GroupingByDate()
+               {
+                   Day = p.Date.Day,
+                   Month = p.Date.Month,
+                   Year = p.Date.Year
+               });
+
+            PDFSalesReport.CreateReport(path, sales);
         }
     }
 }
