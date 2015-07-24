@@ -18,6 +18,10 @@ namespace DatabaseApps.Oracle
 
         public DbSet<Vendor> Vendors { get; set; }
 
+        public DbSet<Expense> Expenses { get; set; }
+
+        public DbSet<Income> Incomes { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("MIHAYLOFF");

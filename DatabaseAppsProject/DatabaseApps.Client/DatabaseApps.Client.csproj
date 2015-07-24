@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbManagers\MysqlDBManager.cs" />
+    <Compile Include="DbManagers\SQLServerDBManager.cs" />
     <Compile Include="DbManagers\OracleDBManager.cs" />
     <Compile Include="ApplicationMain.cs" />
     <Compile Include="Exporters\ExcelExporter.cs" />

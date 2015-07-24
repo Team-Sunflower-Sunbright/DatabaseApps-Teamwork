@@ -12,7 +12,7 @@
         {
             using (var excel = new ExcelPackage())
             {
-                const string FileLocation = @"Report.xlsx";
+                const string FileLocation = @"../../Output-Files/Report.xlsx";
 
                 // Meta info
                 excel.Workbook.Properties.Author = "Shady Computer";

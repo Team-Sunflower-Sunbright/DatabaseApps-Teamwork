@@ -18,7 +18,7 @@ namespace DatabaseApps.MySql
 
         public virtual DbSet<Vendor> Vendors { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Income> Sales { get; set; }
+        public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<Measure> Measures { get; set; }
     }

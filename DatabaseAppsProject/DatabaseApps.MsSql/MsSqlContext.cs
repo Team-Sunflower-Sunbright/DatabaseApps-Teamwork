@@ -18,7 +18,8 @@ namespace DatabaseApps.MsSql
 
         public IDbSet<Vendor> Vendors { get; set; }
 
-        public IDbSet<Income> Sales { get; set; }
+        public IDbSet<Income> Incomes { get; set; }
 
+        public IDbSet<Expense> Expenses { get; set; }
     }
 }

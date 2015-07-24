@@ -48,8 +48,8 @@
                         tax = (decimal)sqliteProducts[p.ProductName];
                     }
 
-                    totalTaxes += (decimal)p.Income * tax / 100;
-                    totalIncome += (decimal)p.Income;
+                    totalTaxes += p.Income == null ? 0 : (decimal)p.Income * tax / 100;
+                    totalIncome += p.Income == null ? 0 : (decimal)p.Income;
                 });
 
                 var financialResult = totalIncome - totalTaxes - v.Expense.Sum();

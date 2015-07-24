@@ -1,0 +1,20 @@
+1,Beer "Zagorka",1,0.86
+2,Vodka "Targovishte",1,7.56
+4,Mineral Water "Devin",1,1.03
+1,Chocolate "Nestle",2,2.20
+5,Coca-Cola,1,1.50
+7,Whiskey "Jack Daniels",1,25.00
+6,Nuts "Peanuts",3,1.10
+8,Chips "Chipi Chips",2,2.50
+1,Flower "Bulgarian Flower",3,0.70
+1,Eggs-Happy,2,2.60
+3,Baylis,1,8.90
+9,Gum "Orbit",2,1.00
+1,Bonbons "Skittles",2,0.90
+10,Cigaretes "Subranie",2,5.00
+1,Liquid Chocolate "Nutella",2,2.50
+1,Chocolat "Milka",2,1.70
+6,Nuts "Beer Nuts",3,0.69
+3,Sprite,1,1.50
+3,Red Bull Shugar Free,1,3.00
+2,Beer "Zagorka 2l",1,2.30

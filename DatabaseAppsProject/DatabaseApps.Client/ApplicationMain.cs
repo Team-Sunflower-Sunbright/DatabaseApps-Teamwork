@@ -15,14 +15,28 @@ namespace DatabaseApps.Client
     {
         static void Main()
         {
+            // Oracle Management things
+            // OracleDBManager oracleManager = new OracleDBManager ();
+            // oracleManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
+            // oracleManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
+            // oracleManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
 
-            // Oracle Management Things
-            // OracleDBManager oracleManager = new OracleDBManager();
-            // oracleManager.ImportMeasuresFromCSVFile("SeedFiles/Measures.txt");
-            // oracleManager.ImportVendorsFromCSVFile("SeedFiles/Vendors.txt");
-            // oracleManager.ImportProductsFromCSVFile("SeedFiles/Products.txt");
+            Database.SetInitializer(new DropCreateDatabaseAlways<MySQLContext>());
 
-            //ExportToExcel();
+            // SQL Server Manager - Use this to import data to SQL Server
+            // SQLServerDBManager sqlManager = new SQLServerDBManager();
+            //sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
+            //sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
+            //sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
+            
+            // Export Data from Oracle to MS SQL Server
+            // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
+
+            // MySQLContext mysqlContext = new MySQLContext();
+            // sqlManager.ExportDataToMySQLContext(mysqlContext);
+            
+            // Export Data to Excel
+            // ExportToExcel();
 
             //Create MSSQL Database
         }

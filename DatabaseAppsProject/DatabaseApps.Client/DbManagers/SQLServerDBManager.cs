@@ -5,23 +5,23 @@
     using System.Linq;
     using Models;
     using MsSql;
-    using Oracle;
+    using MySql;
 
-    public class OracleDBManager
+    public class SQLServerDBManager
     {
-        private OracleDbContext oracleContext;
+        private MsSqlContext sqlServerContext;
 
-        public OracleDBManager()
+        public SQLServerDBManager()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<OracleDbContext>());
-            this.oracleContext = new OracleDbContext();
+            Database.SetInitializer(new DropCreateDatabaseAlways<MsSqlContext>());
+            this.sqlServerContext = new MsSqlContext();
         }
 
-        public OracleDbContext OracleDbContext
+        public MsSqlContext SqlServerContext
         {
             get
             {
-                return this.oracleContext;
+                return this.sqlServerContext;
             }
         }
 
@@ -44,8 +44,8 @@
                 product.Price = price;
 
 
-                this.oracleContext.Products.Add(product);
-                this.oracleContext.SaveChanges();
+                this.sqlServerContext.Products.Add(product);
+                this.sqlServerContext.SaveChanges();
             }
 
             reader.Close();
@@ -63,8 +63,8 @@
                 Vendor vendor = new Vendor();
                 vendor.Name = vendorName;
 
-                this.oracleContext.Vendors.Add(vendor);
-                this.oracleContext.SaveChanges();
+                this.sqlServerContext.Vendors.Add(vendor);
+                this.sqlServerContext.SaveChanges();
             }
 
             reader.Close();
@@ -82,26 +82,26 @@
                 Measure measure = new Measure();
                 measure.Name = measureName;
 
-                this.oracleContext.Measures.Add(measure);
-                this.oracleContext.SaveChanges();
+                this.sqlServerContext.Measures.Add(measure);
+                this.sqlServerContext.SaveChanges();
             }
 
             reader.Close();
         }
 
-        public void ExportDataToMSSQLContext(MsSqlContext context)
+        public void ExportDataToMySQLContext(MySQLContext context)
         {
-            var measures = this.oracleContext.Measures.ToList();
-            var products = this.oracleContext.Products.ToList();
-            var vendors = this.oracleContext.Vendors.ToList();
-            var incomes = this.oracleContext.Incomes.ToList();
-            var expenses = this.oracleContext.Expenses.ToList();
+            var measures = this.sqlServerContext.Measures.ToList();
+            var products = this.sqlServerContext.Products.ToList();
+            var vendors = this.sqlServerContext.Vendors.ToList();
+            var incomes = this.sqlServerContext.Incomes.ToList();
+            var expenses = this.sqlServerContext.Expenses.ToList();
 
             foreach (var measure in measures)
             {
                 if (!context.Measures.Any(m => m.Name == measure.Name))
                 {
-                    context.Measures.Add(measure);   
+                    context.Measures.Add(measure);
                 }
             }
 
