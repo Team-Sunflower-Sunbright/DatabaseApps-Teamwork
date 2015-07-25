@@ -129,6 +129,7 @@
     <Compile Include="Exporters\XMLExporter.cs" />
     <Compile Include="Importers\MongoImporter.cs" />
     <Compile Include="Importers\MySqlImporter.cs" />
+    <Compile Include="Importers\XML\XMLImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbManagers\SQLiteDBManager.cs" />
   </ItemGroup>

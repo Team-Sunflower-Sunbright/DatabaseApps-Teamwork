@@ -12,6 +12,7 @@ namespace DatabaseApps.Client
     using Models;
     using MySql;
     using DatabaseApps.Client.Exporters.PDF;
+    using DatabaseApps.Client.Importers.XML;
 
     public class ApplicationMain
     {
@@ -47,6 +48,8 @@ namespace DatabaseApps.Client
             //MongoImporter.ImportSalesReportsIntoDatabase();
 
             //CreateSaleReport("sales report.pdf");
+            //var mssqlContext = new MsSqlContext();
+            //XMLImporter.ImportExpensesByMonth(mssqlContext, "Sample-Vendor-Expenses.xml");
         }
 
         /// <summary>
