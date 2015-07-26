@@ -1,4 +1,6 @@
-﻿using System.Data.Entity.Migrations;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
@@ -6,23 +8,32 @@ using Ionic.Zip;
 
 namespace FromZipToSql
 {
-    public class Program
+    public static class Program
     {
         private static readonly ProductsEntities context = new ProductsEntities();
+        private static readonly string zipFilesDirectory = Directory.GetCurrentDirectory() + @"\zipFiles\";
+        private static readonly string tempFolderName = "tempXlsFolder";
 
-        static void Main()
+        public static void Main()
         {
-            string filePath = "D:\\Programming\\workspace\\DatabaseApplications\\FromZipToSql\\Sample-Sales-Reports.zip";
-            string tempFolderName = "tempXlsFolder";
+            List<string> zipFilesPath = GetAllFilesInDirectory(zipFilesDirectory, "zip");
+            string filePath = String.Empty;
+            foreach (var file in zipFilesPath)
+            {
+                filePath = zipFilesDirectory + file;
+                ExtactXlsFilesFromZip(filePath);
+            }
 
-            FindAndExtactAllXlsFiles(filePath);
-            
-            GetAllXmlFiles(tempFolderName);
+            List<string> xmlFilesPath = GetAllXmlFilesPath(tempFolderName);
+            foreach (var file in xmlFilesPath)
+            {
+                XlsReader(file);
+            }
 
-            ClearXlsDirectory();
+            ClearDirectory(tempFolderName);
         }
 
-        public static void XlsReader(string fileLocation)
+        private static void XlsReader(string fileLocation)
         {
             string con =
                 string.Format(
@@ -33,28 +44,28 @@ namespace FromZipToSql
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand("select * from [Sales$]", connection);
-                using (OleDbDataReader dr = command.ExecuteReader())
+                using (OleDbDataReader dataReader = command.ExecuteReader())
                 {
                     int rowCounter = 0;
                     int vendorId = 0;
-                    while (dr.Read())
+                    while (dataReader.Read())
                     {
                         if (rowCounter == 0)
                         {
                             var vendor = new Vendor()
                             {
-                                Name = dr[0].ToString()
+                                Name = dataReader[0].ToString()
                             };
 
                             context.Vendors.AddOrUpdate(v => v.Name, vendor);
                             vendorId = vendor.Id;
                         }
 
-                        if (!string.IsNullOrEmpty(dr[1].ToString()))
+                        if (!string.IsNullOrEmpty(dataReader[1].ToString()))
                         {
-                            string name = dr[0].ToString();
-                            int quantity = int.Parse(dr[1].ToString());
-                            decimal price = decimal.Parse(dr[2].ToString());
+                            string name = dataReader[0].ToString();
+                            int quantity = int.Parse(dataReader[1].ToString());
+                            decimal price = decimal.Parse(dataReader[2].ToString());
 
                             AddProductsInDB(name, quantity, price, vendorId);
                         }
@@ -67,7 +78,7 @@ namespace FromZipToSql
             }
         }
 
-        public static void AddProductsInDB(string name, int quantity, decimal price, int vendorId)
+        private static void AddProductsInDB(string name, int quantity, decimal price, int vendorId)
         {
             var duplicatedProduct = context.Products.Where(p => p.Name == name && p.VendorId == vendorId);
 
@@ -84,35 +95,59 @@ namespace FromZipToSql
             }
         }
 
-        public static void GetAllXmlFiles(string sDir)
+        private static List<string> GetAllXmlFilesPath(string directoryPath)
         {
-            foreach (string d in Directory.GetDirectories(sDir))
+            List<string> paths = new List<string>();
+            foreach (string path in Directory.GetDirectories(directoryPath))
             {
-                foreach (string f in Directory.GetFiles(d))
+                Directory.GetFiles(path).ToList().ForEach(f =>
                 {
-                    XlsReader(f);
-                }
-                GetAllXmlFiles(d);
+                    paths.Add(f);
+                });
+                GetAllXmlFilesPath(path);
             }
+
+            return paths;
         }
 
-        public static void FindAndExtactAllXlsFiles(string filePath)
+        private static List<string> GetAllFilesInDirectory(string path, string fileExtension = null)
         {
-            using (ZipFile zip = ZipFile.Read(filePath))
+            var directoryFiles = new List<string>();
+            var directory = new DirectoryInfo(path);
+            if (directory.Exists)
             {
-                foreach (var z in zip)
+                fileExtension = fileExtension == null ? "" : "." + fileExtension;
+                FileInfo[] files = directory.GetFiles("*" + fileExtension);
+                files.ToList().ForEach(f =>
                 {
-                    if (z.FileName.EndsWith(".xls"))
+                    directoryFiles.Add(f.Name);
+                }); 
+            }
+
+            return directoryFiles;
+        }
+
+        private static void ExtactXlsFilesFromZip(string zipFilePath)
+        {
+            try
+            {
+                using (ZipFile zip = ZipFile.Read(zipFilePath))
+                {
+                    foreach (var z in zip)
                     {
-                        z.Extract("tempXlsFolder");
+                        z.Extract(tempFolderName);
                     }
                 }
             }
+            catch (ZipException)
+            {
+                Console.WriteLine("File already exists.");
+            }
         }
 
-        public static void ClearXlsDirectory()
+        public static void ClearDirectory(string folderName)
         {
-            System.IO.DirectoryInfo downloadedMessageInfo = new DirectoryInfo("tempXlsFolder");
+            DirectoryInfo downloadedMessageInfo = new DirectoryInfo(folderName);
 
             foreach (FileInfo file in downloadedMessageInfo.GetFiles())
             {
