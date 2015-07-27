@@ -41,7 +41,7 @@
                 product.Name = productName;
                 product.VendorId = vendorId;
                 product.MeasureId = measureId;
-                product.Price = price;
+                product.BuyingPrice = price;
 
 
                 this.sqlServerContext.Products.Add(product);

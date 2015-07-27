@@ -63,9 +63,9 @@ namespace DatabaseApps.Client.Exporters.PDF
             {
                 var productDataCell = new PdfPCell(new Paragraph(sale.Product.Name, dataFont));
                 var quantityDataCell = new PdfPCell(new Paragraph(sale.Quantity.ToString() + " " + sale.Product.Measure.Name, dataFont));
-                var unitPriceDataCell = new PdfPCell(new Paragraph(sale.Product.Price.ToString(), dataFont));
+                var unitPriceDataCell = new PdfPCell(new Paragraph(sale.Product.BuyingPrice.ToString(), dataFont));
                 var locationDataCell = new PdfPCell(new Paragraph(sale.Product.Vendor.Name, dataFont));
-                var sum = ((decimal)sale.Quantity * sale.Product.Price);
+                var sum = ((decimal)sale.Quantity * sale.Product.BuyingPrice);
                 var sumDataCell = new PdfPCell(new Paragraph(sum.ToString(), dataFont));
                 var dataCells = new PdfPCell[] { productDataCell, quantityDataCell, unitPriceDataCell, locationDataCell, sumDataCell };
 
@@ -104,7 +104,7 @@ namespace DatabaseApps.Client.Exporters.PDF
             foreach (var row in rowsByDate)
             {
                 var reportTable = PDFSalesReport.CreateReportTable(row);
-                grandTotal += row.Sum(a => a.Product.Price * (decimal)a.Quantity);
+                grandTotal += row.Sum(a => a.Product.BuyingPrice * (decimal)a.Quantity);
                 doc.Add(reportTable);
             }
 

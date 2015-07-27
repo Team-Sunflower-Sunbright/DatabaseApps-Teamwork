@@ -9,7 +9,7 @@ namespace DatabaseApps.Oracle
         public OracleDbContext()
             : base("OracleDbContext")
         {
-            
+
         }
 
         public DbSet<Product> Products { get; set; }
@@ -21,6 +21,8 @@ namespace DatabaseApps.Oracle
         public DbSet<Expense> Expenses { get; set; }
 
         public DbSet<Income> Incomes { get; set; }
+
+        public DbSet<Supermarket> Supermarkets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

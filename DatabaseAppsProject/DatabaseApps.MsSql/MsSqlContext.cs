@@ -21,5 +21,7 @@ namespace DatabaseApps.MsSql
         public IDbSet<Income> Incomes { get; set; }
 
         public IDbSet<Expense> Expenses { get; set; }
+
+        public IDbSet<Supermarket> Supermarkets { get; set; }
     }
 }

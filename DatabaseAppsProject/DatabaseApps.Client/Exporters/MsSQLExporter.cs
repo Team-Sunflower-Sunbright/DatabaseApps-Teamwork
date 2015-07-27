@@ -53,7 +53,7 @@
                     Name = "Some"
                 },
                 Name = "Chocolate “Milka”",
-                Price = 10m,
+                BuyingPrice = 10m,
                 Incomes = new List<Income>()
                 {
                     new Income()
@@ -95,7 +95,7 @@
                     Name = "Some2"
                 },
                 Name = "Beer “Zagorka”",
-                Price = 10m,
+                BuyingPrice = 10m,
                 Incomes = new List<Income>()
                 {
                     new Income()
@@ -127,7 +127,7 @@
                     Name = "Some3"
                 },
                 Name = "Vodka “Targovishte”",
-                Price = 10m,
+                BuyingPrice = 10m,
                 Incomes = new List<Income>()
                 {
                     new Income()

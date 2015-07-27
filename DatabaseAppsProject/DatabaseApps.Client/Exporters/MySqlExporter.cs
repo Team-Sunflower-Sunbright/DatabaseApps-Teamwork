@@ -27,7 +27,7 @@
                     Products = v.Products.Select(p => new
                     {
                         ProductName = p.Name,
-                        Income = p.Incomes.Select(s => s.Quantity * (double)p.Price).Sum()
+                        Income = p.Incomes.Select(s => s.Quantity * (double)p.BuyingPrice).Sum()
                     }),
                     Expense = v.Expenses.Select(e => e.Amount)
                 })

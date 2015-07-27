@@ -26,7 +26,7 @@
                                                 ProductName = p.Name,
                                                 VendorName = p.Vendor.Name,
                                                 TotalQuantitySold = p.Incomes.Select(s => s.Quantity).ToList().Sum(),
-                                                TotalIncomes = p.Incomes.Select(inc => inc.Quantity * (double)inc.Product.Price).ToList().Sum()
+                                                TotalIncomes = p.Incomes.Select(inc => inc.Quantity * (double)inc.Product.BuyingPrice).ToList().Sum()
                                             })
                                             .ToList();
 

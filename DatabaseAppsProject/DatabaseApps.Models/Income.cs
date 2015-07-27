@@ -15,5 +15,13 @@
         public int ProductId { get; set; }
 
         public virtual Product Product { get; set; }
+
+        public int SupermarketId { get; set; }
+
+        public virtual Supermarket Supermarket { get; set; }
+
+        public decimal SalePrice { get; set; }
+
+        public double TotalSum { get; set; }
     }
 }

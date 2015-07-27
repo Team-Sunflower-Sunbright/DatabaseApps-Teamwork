@@ -49,7 +49,7 @@
             set;
         }
 
-        public decimal Price
+        public decimal BuyingPrice
         {
             get;
             set;

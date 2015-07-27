@@ -58,7 +58,7 @@
             var deepCopyProduct = new Product()
             {
                 Name = product.Name,
-                Price = product.Price,
+                BuyingPrice = product.BuyingPrice,
                 Incomes = incomes,
                 Measure = new Measure() { Name = product.Measure.Name },
                 Vendor = new Vendor()
