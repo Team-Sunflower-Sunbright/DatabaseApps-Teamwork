@@ -1,4 +1,5 @@
 ﻿using System;
+using FromZipToSql;
 
 namespace DatabaseApps.Client
 {
@@ -25,17 +26,27 @@ namespace DatabaseApps.Client
             // oracleManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
 
             // SQL Server Manager - Use this to import data to SQL Server
+			
             SQLServerDBManager sqlManager = new SQLServerDBManager();
 
             // Sample Data
             // sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
             // sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
             // sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
+			
             
             // #2 - Export Data from Oracle to MS SQL Server
             // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
-
             
+            // #2 - ZIP Import
+            // ZipImporter.Import();
+
+            // #3 - Sales Report
+            // CreateSaleReport("../../Output-Files/sales report.pdf");
+
+            // #4 - XML Export
+            // TODO:
+
             // #5 - Anton : Test of the JsonExport and import into Mongo
             // var startDate = new DateTime();
             // var endDate = new DateTime();
@@ -43,11 +54,9 @@ namespace DatabaseApps.Client
             // JsonExporter.ExportSalesReportsToJson(sqlManager.SqlServerContext, startDate, endDate);
             // MongoImporter.ImportSalesReportsIntoDatabase();
 
-            // #4 - Sales Report
-            // CreateSaleReport("../../Output-Files/sales report.pdf");
 
             // #6 - XML Import
-            XMLImporter.ImportExpensesByMonth(sqlManager.SqlServerContext, "../../Output-Files/Sample-Vendor-Expenses.xml");
+            // XMLImporter.ImportExpensesByMonth(sqlManager.SqlServerContext, "../../Output-Files/Sample-Vendor-Expenses.xml");
 
             // #7 - Export Data from MS SQL to MySQL
             // SeedDataToMySql();

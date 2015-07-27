@@ -43,6 +43,9 @@
       <HintPath>..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
     </Reference>
@@ -130,12 +133,15 @@
     <Compile Include="Importers\MongoImporter.cs" />
     <Compile Include="Importers\MySqlImporter.cs" />
     <Compile Include="Importers\XML\XMLImporter.cs" />
+    <Compile Include="Importers\ZipImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbManagers\SQLiteDBManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseApps.Models\DatabaseApps.Models.csproj">
@@ -162,6 +168,9 @@
       <Project>{2e0cb561-f092-4b7e-8b83-25f3ce5a1710}</Project>
       <Name>DatabasseApps.SQLite</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.97.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.97.0\build\net45\System.Data.SQLite.Core.targets')" />
