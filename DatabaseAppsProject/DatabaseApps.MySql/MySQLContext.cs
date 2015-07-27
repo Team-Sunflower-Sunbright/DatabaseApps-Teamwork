@@ -19,5 +19,6 @@ namespace DatabaseApps.MySql
         public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<Measure> Measures { get; set; }
+        public virtual DbSet<Supermarket> Supermarkets { get; set; }
     }
 }

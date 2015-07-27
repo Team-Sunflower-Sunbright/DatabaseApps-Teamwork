@@ -34,7 +34,12 @@ namespace DatabaseApps.Client.Exporters.PDF
             var dataTable = new PdfPTable(new float[] { 2, 1, 1.5f, 3.5f, 1 });
             dataTable.WidthPercentage = 100f;
             Font dateFont = FontFactory.GetFont("Arial", 11);
-            var date = sales.Key.Year + "-" + sales.Key.Month + "-" + sales.Key.Day;
+            // var date = sales.Key.Year + "-" + 
+            //     sales.Key.Month.ToString().PadLeft(2, '0') + "-" + 
+            //     sales.Key.Day.ToString().PadLeft(2, '0');
+
+            var date = sales.First().Date.ToString("dd-MMM-yyyy");
+
             var dateParagraph = new Paragraph("Date: " + date, dateFont);
             var dateCell = new PdfPCell(dateParagraph);
             dateCell.Padding = 5;
@@ -63,9 +68,9 @@ namespace DatabaseApps.Client.Exporters.PDF
             {
                 var productDataCell = new PdfPCell(new Paragraph(sale.Product.Name, dataFont));
                 var quantityDataCell = new PdfPCell(new Paragraph(sale.Quantity.ToString() + " " + sale.Product.Measure.Name, dataFont));
-                var unitPriceDataCell = new PdfPCell(new Paragraph(sale.Product.BuyingPrice.ToString(), dataFont));
-                var locationDataCell = new PdfPCell(new Paragraph(sale.Product.Vendor.Name, dataFont));
-                var sum = ((decimal)sale.Quantity * sale.Product.BuyingPrice);
+                var unitPriceDataCell = new PdfPCell(new Paragraph(sale.SalePrice.ToString(), dataFont));
+                var locationDataCell = new PdfPCell(new Paragraph(sale.Supermarket.Name, dataFont));
+                var sum = ((decimal)sale.Quantity * sale.SalePrice);
                 var sumDataCell = new PdfPCell(new Paragraph(sum.ToString(), dataFont));
                 var dataCells = new PdfPCell[] { productDataCell, quantityDataCell, unitPriceDataCell, locationDataCell, sumDataCell };
 
@@ -104,7 +109,7 @@ namespace DatabaseApps.Client.Exporters.PDF
             foreach (var row in rowsByDate)
             {
                 var reportTable = PDFSalesReport.CreateReportTable(row);
-                grandTotal += row.Sum(a => a.Product.BuyingPrice * (decimal)a.Quantity);
+                grandTotal += row.Sum(a => a.SalePrice * (decimal)a.Quantity);
                 doc.Add(reportTable);
             }
 

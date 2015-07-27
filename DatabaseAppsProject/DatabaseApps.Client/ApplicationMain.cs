@@ -18,38 +18,42 @@ namespace DatabaseApps.Client
     {
         static void Main()
         {
-            // Oracle Management things
+            // #1 - Oracle
             // OracleDBManager oracleManager = new OracleDBManager ();
             // oracleManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
             // oracleManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
             // oracleManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
 
             // SQL Server Manager - Use this to import data to SQL Server
-            //SQLServerDBManager sqlManager = new SQLServerDBManager();
-            //sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
-            //sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
-            //sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
+            SQLServerDBManager sqlManager = new SQLServerDBManager();
+
+            // Sample Data
+            // sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
+            // sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
+            // sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
             
-            // Export Data from Oracle to MS SQL Server
+            // #2 - Export Data from Oracle to MS SQL Server
             // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
 
-            // Export Data from MS SQL to MySQL
-            //SeedDataToMySql();
             
-            // Export Data to Excel
-            //ExportToExcel();
-            
-            //Anton : Test of the JsonExport and import into Mongo
-            //var dbContext = new MsSqlContext();
-            //var startDate = new DateTime();
-            //var endDate = new DateTime();
+            // #5 - Anton : Test of the JsonExport and import into Mongo
+            // var startDate = new DateTime();
+            // var endDate = new DateTime();
 
-            //JsonExporter.ExportSalesReportsToJson(dbContext, startDate, endDate);
-            //MongoImporter.ImportSalesReportsIntoDatabase();
+            // JsonExporter.ExportSalesReportsToJson(sqlManager.SqlServerContext, startDate, endDate);
+            // MongoImporter.ImportSalesReportsIntoDatabase();
 
-            //CreateSaleReport("sales report.pdf");
-            //var mssqlContext = new MsSqlContext();
-            //XMLImporter.ImportExpensesByMonth(mssqlContext, "Sample-Vendor-Expenses.xml");
+            // #4 - Sales Report
+            // CreateSaleReport("../../Output-Files/sales report.pdf");
+
+            // #6 - XML Import
+            XMLImporter.ImportExpensesByMonth(sqlManager.SqlServerContext, "../../Output-Files/Sample-Vendor-Expenses.xml");
+
+            // #7 - Export Data from MS SQL to MySQL
+            // SeedDataToMySql();
+
+            // #8 - Export Data to Excel
+            // ExportToExcel();
         }
 
         /// <summary>

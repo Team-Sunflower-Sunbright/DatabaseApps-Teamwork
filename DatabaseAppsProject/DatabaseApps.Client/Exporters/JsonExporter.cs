@@ -20,15 +20,17 @@
             }
 
             var productSales = dbContext.Products
-                                            .Select(p => new
-                                            {
-                                                Id = p.Id,
-                                                ProductName = p.Name,
-                                                VendorName = p.Vendor.Name,
-                                                TotalQuantitySold = p.Incomes.Select(s => s.Quantity).ToList().Sum(),
-                                                TotalIncomes = p.Incomes.Select(inc => inc.Quantity * (double)inc.Product.BuyingPrice).ToList().Sum()
-                                            })
-                                            .ToList();
+                .Select(p => new
+                {
+                    Id = p.Id,
+                    ProductName = p.Name,
+                    VendorName = p.Vendor.Name,
+                    TotalQuantitySold = p.Incomes.ToList().Sum(i => i.Quantity) == null ? 0 :
+                        p.Incomes.ToList().Sum(i => i.Quantity),
+                    TotalIncomes = p.Incomes.ToList().Sum(i => i.Quantity * (double)i.SalePrice) == null ? 0 :
+                        p.Incomes.ToList().Sum(i => i.Quantity * (double)i.SalePrice)
+                })
+                .ToList();
 
             foreach (var saleReport in productSales)
             {
