@@ -1,4 +1,5 @@
 ﻿using System;
+using FromZipToSql;
 
 namespace DatabaseApps.Client
 {
@@ -25,10 +26,12 @@ namespace DatabaseApps.Client
             // oracleManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
 
             // SQL Server Manager - Use this to import data to SQL Server
-            //SQLServerDBManager sqlManager = new SQLServerDBManager();
-            //sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
-            //sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
-            //sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
+            /*SQLServerDBManager sqlManager = new SQLServerDBManager();
+            sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
+            sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
+            sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");*/
+
+            ZipImporter.Import();
             
             // Export Data from Oracle to MS SQL Server
             // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
