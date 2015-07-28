@@ -1,19 +1,12 @@
-﻿using System;
-using FromZipToSql;
-
-namespace DatabaseApps.Client
+﻿namespace DatabaseApps.Client
 {
-    using DatabaseApps.MsSql;
-    using System.Data.Entity;
-    using System.Collections.Generic;
     using System.Linq;
     using DbManagers;
     using Exporters;
+    using Exporters.PDF;
     using Importers;
     using Models;
-    using MySql;
-    using DatabaseApps.Client.Exporters.PDF;
-    using DatabaseApps.Client.Importers.XML;
+    using MsSql;
 
     public class ApplicationMain
     {

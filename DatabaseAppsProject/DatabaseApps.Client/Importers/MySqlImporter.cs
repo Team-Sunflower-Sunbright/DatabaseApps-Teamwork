@@ -42,15 +42,14 @@
             var incomes = product.Incomes
                 .Select(income => new Income()
                 {
-                    Date = income.Date,
-                    Quantity = income.Quantity
+                    Quantity = income.Quantity,
+                    SalePrice = income.SalePrice
                 })
                 .ToList();
 
             var expenses = product.Vendor.Expenses
                 .Select(expense => new Expense()
                 {
-                    Date = expense.Date,
                     Amount = expense.Amount,
                 })
                 .ToList();
@@ -60,7 +59,6 @@
                 Name = product.Name,
                 BuyingPrice = product.BuyingPrice,
                 Incomes = incomes,
-                Measure = new Measure() { Name = product.Measure.Name },
                 Vendor = new Vendor()
                 {
                     Name = product.Vendor.Name,

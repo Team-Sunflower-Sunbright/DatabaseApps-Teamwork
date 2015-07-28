@@ -89,55 +89,55 @@
             reader.Close();
         }
 
-        public void ExportDataToMySQLContext(MySQLContext context)
-        {
-            var measures = this.sqlServerContext.Measures.ToList();
-            var products = this.sqlServerContext.Products.ToList();
-            var vendors = this.sqlServerContext.Vendors.ToList();
-            var incomes = this.sqlServerContext.Incomes.ToList();
-            var expenses = this.sqlServerContext.Expenses.ToList();
+        //public void ExportDataToMySQLContext(MySQLContext context)
+        //{
+        //    var measures = this.sqlServerContext.Measures.ToList();
+        //    var products = this.sqlServerContext.Products.ToList();
+        //    var vendors = this.sqlServerContext.Vendors.ToList();
+        //    var incomes = this.sqlServerContext.Incomes.ToList();
+        //    var expenses = this.sqlServerContext.Expenses.ToList();
 
-            foreach (var measure in measures)
-            {
-                if (!context.Measures.Any(m => m.Name == measure.Name))
-                {
-                    context.Measures.Add(measure);
-                }
-            }
+        //    foreach (var measure in measures)
+        //    {
+        //        if (!context.Measures.Any(m => m.Name == measure.Name))
+        //        {
+        //            context.Measures.Add(measure);
+        //        }
+        //    }
 
-            foreach (var vendor in vendors)
-            {
-                if (!context.Vendors.Any(v => v.Name == vendor.Name))
-                {
-                    context.Vendors.Add(vendor);
-                }
-            }
+        //    foreach (var vendor in vendors)
+        //    {
+        //        if (!context.Vendors.Any(v => v.Name == vendor.Name))
+        //        {
+        //            context.Vendors.Add(vendor);
+        //        }
+        //    }
 
-            foreach (var product in products)
-            {
-                if (!context.Products.Any(p => p.Name == p.Name))
-                {
-                    context.Products.Add(product);
-                }
-            }
+        //    foreach (var product in products)
+        //    {
+        //        if (!context.Products.Any(p => p.Name == p.Name))
+        //        {
+        //            context.Products.Add(product);
+        //        }
+        //    }
 
-            foreach (var income in incomes)
-            {
-                if (!context.Incomes.Any(i => i.Date == income.Date))
-                {
-                    context.Incomes.Add(income);
-                }
-            }
+        //    foreach (var income in incomes)
+        //    {
+        //        if (!context.Incomes.Any(i => i.Date == income.Date))
+        //        {
+        //            context.Incomes.Add(income);
+        //        }
+        //    }
 
-            foreach (var expense in expenses)
-            {
-                if (!context.Expenses.Any(e => e.Date == expense.Date))
-                {
-                    context.Expenses.Add(expense);
-                }
-            }
+        //    foreach (var expense in expenses)
+        //    {
+        //        if (!context.Expenses.Any(e => e.Date == expense.Date))
+        //        {
+        //            context.Expenses.Add(expense);
+        //        }
+        //    }
 
-            context.SaveChanges();
-        }
+        //    context.SaveChanges();
+        //}
     }
 }

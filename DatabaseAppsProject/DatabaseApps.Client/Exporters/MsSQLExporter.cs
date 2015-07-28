@@ -31,7 +31,6 @@
 
             var products = msSqlContext.Products
                 .Include(p => p.Incomes)
-                .Include(p => p.Measure)
                 .Include(p => p.Vendor)
                 .Include(p => p.Vendor.Expenses)
                 .ToList();
@@ -59,12 +58,14 @@
                     new Income()
                     {
                         Quantity = 10,
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        Supermarket = new Supermarket()
                     },
                     new Income()
                     {
                         Quantity = 10,
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        Supermarket = new Supermarket()
                     }
                 },
                 Vendor = new Vendor()
@@ -101,7 +102,8 @@
                     new Income()
                     {
                         Quantity = 10,
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        Supermarket = new Supermarket()
                     }
                 },
                 Vendor = new Vendor()
@@ -133,7 +135,8 @@
                     new Income()
                     {
                         Quantity = 10,
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        Supermarket = new Supermarket()
                     }
                 },
                 Vendor = new Vendor()
