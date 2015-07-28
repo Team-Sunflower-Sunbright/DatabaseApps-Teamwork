@@ -1,4 +1,6 @@
-﻿namespace DatabaseApps.Client
+﻿using System;
+
+namespace DatabaseApps.Client
 {
     using System.Linq;
     using DbManagers;
@@ -19,7 +21,7 @@
             // oracleManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
 
             // SQL Server Manager - Use this to import data to SQL Server
-			
+
             SQLServerDBManager sqlManager = new SQLServerDBManager();
 
             // Sample Data
@@ -38,7 +40,9 @@
             // CreateSaleReport("../../Output-Files/sales report.pdf");
 
             // #4 - XML Export
-            // TODO:
+            //var startDate = new DateTime();
+            //var endDate = new DateTime();
+            //XMLExporter.ExportToXML(startDate, endDate);
 
             // #5 - Anton : Test of the JsonExport and import into Mongo
             // var startDate = new DateTime();

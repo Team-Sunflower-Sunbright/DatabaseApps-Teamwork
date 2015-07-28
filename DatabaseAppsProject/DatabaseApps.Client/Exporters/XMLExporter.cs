@@ -1,5 +1,8 @@
-﻿namespace DatabaseApps.Client.Exporters
+﻿using MongoDB.Driver.Wrappers;
+
+namespace DatabaseApps.Client.Exporters
 {
+    using System.Data.Entity;
     using System;
     using System.Linq;
     using System.Text;
@@ -13,15 +16,17 @@
             const string dateFormat = "dd-MMM-yyy";
             var dbContext = new MsSqlContext();
 
-            var vendors = dbContext.Vendors.Select(v => new
-            {
-                vendor = v.Name,
-                summary = v.Expenses.Where(e => e.Date >= startDate && e.Date <= endDate).Select(e => new
+            var vendors = dbContext.Vendors
+                .Where(v => v.Products.Any(p => p.Incomes.Any(i => i.Date >= startDate && i.Date <= endDate)))
+                .Select(v => new
                 {
-                    date = e.Date,
-                    totalSum = e.Amount
-                })
-            });
+                    Vendor = v.Name,
+                    Summary = v.Products.Select(p => p.Incomes.GroupBy(gr => gr.Date).Select(i => new
+                    {
+                        Date = i.Key,
+                        TotalSum = p.Incomes.Where(a => a.Date == i.Key).Sum(a => (double)a.SalePrice * a.Quantity)
+                    })) 
+                });
 
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Encoding = Encoding.UTF8;
@@ -31,35 +36,31 @@
                 @"vendorsSales-(" +
                 startDate.Date.ToString(dateFormat) + ")-(" +
                 endDate.Date.ToString(dateFormat) + ").xml";
-            
+
             using (XmlWriter writer = XmlWriter.Create(fileName, settings))
             {
                 writer.WriteStartDocument();
 
-                if (vendors.FirstOrDefault() != null)
-                {
-                    writer.WriteStartElement("sales");
 
-                    foreach (var vendor in vendors)
-                    {
-                        writer.WriteStartElement("sale");
-                        writer.WriteAttributeString("vendor", vendor.vendor);
-                        foreach (var vs in vendor.summary)
-                        {
-                            writer.WriteStartElement("summary");
-                            writer.WriteAttributeString("date", vs.date.Date.ToString(dateFormat));
-                            writer.WriteAttributeString("total-sum", vs.totalSum.ToString());
-                            writer.WriteEndElement();
-                        }
-                        writer.WriteEndElement();
-                    }
-                }
-                else
+                writer.WriteStartElement("sales");
+
+                foreach (var vendor in vendors)
                 {
-                    writer.WriteStartElement("Error");
-                    writer.WriteAttributeString("errorMsg", "No data in current period!");
+                    writer.WriteStartElement("sale");
+                    writer.WriteAttributeString("vendor", vendor.Vendor);
+
+                    foreach (var vs in vendor.Summary.FirstOrDefault())
+                    {
+                        
+                        writer.WriteStartElement("summary");
+                        writer.WriteAttributeString("date", vs.Date.Date.ToString(dateFormat));
+                        writer.WriteAttributeString("total-sum", vs.TotalSum.ToString());
+                        writer.WriteEndElement();
+                        
+                    }
+                    writer.WriteEndElement();
                 }
-                
+
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
                 writer.Close();
@@ -67,3 +68,4 @@
         }
     }
 }
+
