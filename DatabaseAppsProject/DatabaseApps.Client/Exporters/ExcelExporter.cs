@@ -32,8 +32,8 @@
                         tax = (decimal)sqliteData[p.Key];
                     }
 
-                    totalTaxes += (decimal)p.Value * tax / 100;
-                    totalIncome += (decimal)p.Value;
+                    totalTaxes += ( p.Value == null ? 0 : (decimal)p.Value ) * tax / 100;
+                    totalIncome += p.Value == null ? 0 : (decimal)p.Value;
                 });
 
                 var financialResult = totalIncome - totalTaxes - vendor.Expenses;

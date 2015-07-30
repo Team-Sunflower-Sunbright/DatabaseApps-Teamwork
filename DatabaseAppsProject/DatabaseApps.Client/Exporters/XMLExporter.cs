@@ -21,7 +21,10 @@ namespace DatabaseApps.Client.Exporters
                 .Select(v => new
                 {
                     Vendor = v.Name,
-                    Summary = v.Products.Select(p => p.Incomes.GroupBy(gr => gr.Date).Select(i => new
+                    Summary = v.Products
+                        .Select(p => p.Incomes
+                                .Where(i =>  i.Date >= startDate && i.Date <= endDate)
+                                .GroupBy(gr => gr.Date).Select(i => new
                     {
                         Date = i.Key,
                         TotalSum = p.Incomes.Where(a => a.Date == i.Key).Sum(a => (double)a.SalePrice * a.Quantity)
