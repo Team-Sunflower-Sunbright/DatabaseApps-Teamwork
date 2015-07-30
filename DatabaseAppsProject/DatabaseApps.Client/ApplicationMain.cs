@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using FromZipToSql;
 
 namespace DatabaseApps.Client
 {
@@ -22,7 +24,7 @@ namespace DatabaseApps.Client
 
             // SQL Server Manager - Use this to import data to SQL Server
 
-            SQLServerDBManager sqlManager = new SQLServerDBManager();
+            //SQLServerDBManager sqlManager = new SQLServerDBManager();
 
             // Sample Data
             // sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
@@ -34,7 +36,7 @@ namespace DatabaseApps.Client
             // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
             
             // #2 - ZIP Import
-            // ZipImporter.Import();
+            //ZipImporter.Import();
 
             // #3 - Sales Report
             // CreateSaleReport("../../Output-Files/sales report.pdf");

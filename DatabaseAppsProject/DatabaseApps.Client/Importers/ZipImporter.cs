@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DatabaseApps.Models;
 using DatabaseApps.MsSql;
 using Ionic.Zip;
@@ -37,6 +38,14 @@ namespace FromZipToSql
 
         private static void XlsReader(string fileLocation)
         {
+            DateTime productsDate = new DateTime();
+            Regex regex = new Regex(@"tempXlsFolder\\(?<date>.*)\\.*");
+            Match match = regex.Match(fileLocation);
+            if (match.Success)
+            {
+                productsDate = Convert.ToDateTime(match.Groups["date"].ToString());
+            }
+
             string con =
                 string.Format(
                     @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0}\{1};" +
@@ -70,7 +79,7 @@ namespace FromZipToSql
                             decimal price = decimal.Parse(dataReader[2].ToString());
                             double totalSum = double.Parse(dataReader[3].ToString());
 
-                            AddProductsInDB(name, quantity, price, supermarketId, totalSum);
+                            AddProductsInDB(name, quantity, price, supermarketId, totalSum, productsDate);
                         }
 
                         rowCounter++;
@@ -81,7 +90,7 @@ namespace FromZipToSql
             }
         }
 
-        private static void AddProductsInDB(string name, int quantity, decimal price, int supermarketId, double totalSum)
+        private static void AddProductsInDB(string name, int quantity, decimal price, int supermarketId, double totalSum, DateTime date)
         {
             name = name.Replace('“', '"');
             name = name.Replace('”', '"');
@@ -91,7 +100,7 @@ namespace FromZipToSql
                 context.Incomes.Add(new Income()
                 {
                     Quantity = quantity,
-                    Date = DateTime.Now,
+                    Date = date,
                     ProductId = productExists.FirstOrDefault(),
                     SupermarketId = supermarketId,
                     SalePrice = price,
