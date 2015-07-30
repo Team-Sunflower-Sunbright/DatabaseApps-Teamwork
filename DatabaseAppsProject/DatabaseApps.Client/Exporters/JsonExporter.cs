@@ -49,11 +49,15 @@
                 var serializedObject = JsonConvert.SerializeObject(saleReport, Formatting.Indented);
                 var reportFilename = string.Format("{0}{1}", saleReport.Id, ".json");
 
-                using (var writer = new StreamWriter(Path.Combine(directoryName, reportFilename)))
+                if (saleReport.TotalIncomes != null &&
+                    saleReport.TotalQuantitySold != null)
                 {
-                    Console.WriteLine("Exporting file {0}...", reportFilename);
-                    writer.WriteLine(serializedObject);
-                    Console.WriteLine("Done.");
+                    using (var writer = new StreamWriter(Path.Combine(directoryName, reportFilename)))
+                    {
+                        Console.WriteLine("Exporting file {0}...", reportFilename);
+                        writer.WriteLine(serializedObject);
+                        Console.WriteLine("Done.");
+                    }
                 }
             }
         }

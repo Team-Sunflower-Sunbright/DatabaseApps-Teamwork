@@ -12,66 +12,26 @@ namespace DatabaseApps.Client
     using Importers.XML;
     using Models;
     using MsSql;
-    using MySql;
-    using Org.BouncyCastle.Cms;
 
     public class ApplicationMain
     {
         static void Main()
         {
-            ProcessInputCommands();
+            bool isRunning = true;
 
-            return;
-            // MySQLContext context = new MySQLContext();
-            // context.Expenses.Select(a => a).ToList();
-            // return;
+            do
+            {
+                try
+                {
+                    ProcessInputCommands();
+                    isRunning = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
 
-            // #1 - Oracle
-            // OracleDBManager oracleManager = new OracleDBManager ();
-            // oracleManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
-            // oracleManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
-            // oracleManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
-
-            // SQL Server Manager - Use this to import data to SQL Server
-
-            SQLServerDBManager sqlManager = new SQLServerDBManager();
-
-            // Sample Data
-            // sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
-            // sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
-            // sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
-
-
-            // #2 - Export Data from Oracle to MS SQL Server
-            // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
-
-            // #2 - ZIP Import
-            // ZipImporter.Import();
-
-            // #3 - Sales Report
-            // CreateSaleReport("../../Output-Files/sales report.pdf");
-
-            // #4 - XML Export
-            // var startDate = new DateTime(2010, 07, 20);
-            // var endDate = new DateTime(2014, 07, 21);
-            // XMLExporter.ExportToXML(startDate, endDate);
-
-            // #5 - Anton : Test of the JsonExport and import into Mongo
-            // var startDate = new DateTime(2010, 07, 20);
-            // var endDate = new DateTime(2014, 07, 21);
-            
-            // JsonExporter.ExportSalesReportsToJson(sqlManager.SqlServerContext, startDate, endDate);
-            // MongoImporter.ImportSalesReportsIntoDatabase();
-
-
-            // #6 - XML Import
-            // XMLImporter.ImportExpensesByMonth(sqlManager.SqlServerContext, "../../Output-Files/Sample-Vendor-Expenses.xml");
-
-            // #7 - Export Data from MS SQL to MySQL
-            SeedDataToMySql();
-
-            // #8 - Export Data to Excel
-            ExportToExcel();
+            } while (isRunning);
         }
 
         private static void ProcessInputCommands()
@@ -179,13 +139,36 @@ namespace DatabaseApps.Client
 
                         Console.WriteLine("financial result exported successfully.");
                         break;
+                    case "help":
+                        PrintHelp();
+                        break;
                     default:
                         Console.WriteLine("Invalid command");
                         break;
                 }
 
+
+                Console.Write("> ");
                 command = Console.ReadLine();
             }
+        }
+
+        private static void PrintHelp()
+        {
+            Console.WriteLine(new string('-', 30) + " HELP " + new string('-', 30));
+
+            Console.WriteLine("oracle import - Imports the sample data into the Oracle DB from text files.");
+            Console.WriteLine("oracle export - Exports the data from the oracle DB to the SQL Server DB");
+            Console.WriteLine("zip import - Imports Incomes data from zip files into SQL Server DB");
+            Console.WriteLine("pdf export - Generates PDF sales report for the given period");
+            Console.WriteLine("xml export - Generates XML sales report for the given period");
+            Console.WriteLine("json export - Generates JSON sales reports for the given period");
+            Console.WriteLine("mongo import - Imports the JSON Sales reports into the MongoDB Database");
+            Console.WriteLine("xml import - Imports Expenses reports from XML files in the SQL Server DB");
+            Console.WriteLine("mysql import - exports the Data from SQL Server DB to the MySQL DB");
+            Console.WriteLine("excel report - Generates an excel report with the financial result for the different vendors. It takes data from the MySQL DB and SQLite");
+
+            Console.WriteLine(new string('-', 30) + " HELP " + new string('-', 30));
         }
 
         /// <summary>
@@ -211,7 +194,7 @@ namespace DatabaseApps.Client
         {
             var context = new MsSqlContext();
             IQueryable<IGrouping<GroupingByDate, Income>> sales = context.Incomes
-                // Where
+               .Where(i => i.Date >= start && i.Date <= end)
                .GroupBy(p => new GroupingByDate()
                {
                    Day = p.Date.Day,
