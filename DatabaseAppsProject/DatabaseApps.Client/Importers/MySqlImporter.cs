@@ -22,7 +22,18 @@
 
             foreach (var product in products)
             {
-                var mySqlProduct = DeepCopyProduct(product);
+                var vendorName = product.Vendor.Name;
+                var vendor = mySqlContext.Vendors.FirstOrDefault(v => v.Name == vendorName);
+                if (vendor == null)
+                {
+                    vendor = new Vendor()
+                    {
+                        Name = vendorName,
+                        Expenses = new List<Expense>()
+                    };
+                }
+
+                var mySqlProduct = DeepCopyProduct(product, vendor);
                 mySqlContext.Products.AddOrUpdate(mySqlProduct);
                 mySqlContext.SaveChanges();
             }
@@ -35,9 +46,10 @@
         /// Entity Framework cannot keep track of 1 item in 2 contexts, so in order to
         /// export something and import it in other database it needs deep copy of it.
         /// </summary>
-        /// <param name="product">Product for copy</param>
+        /// <param name="product">Product for copy.</param>
+        /// <param name="vendor">Product's vendor.</param>
         /// <returns>Deep copy of the product</returns>
-        private static Product DeepCopyProduct(Product product)
+        private static Product DeepCopyProduct(Product product, Vendor vendor)
         {
             var incomes = product.Incomes
                 .Select(income => new Income()
@@ -54,16 +66,17 @@
                 })
                 .ToList();
 
+            foreach (var expense in expenses)
+            {
+                vendor.Expenses.Add(expense);
+            }
+
             var deepCopyProduct = new Product()
             {
                 Name = product.Name,
                 BuyingPrice = product.BuyingPrice,
                 Incomes = incomes,
-                Vendor = new Vendor()
-                {
-                    Name = product.Vendor.Name,
-                    Expenses = expenses
-                }
+                Vendor = vendor
             };
 
             return deepCopyProduct;
