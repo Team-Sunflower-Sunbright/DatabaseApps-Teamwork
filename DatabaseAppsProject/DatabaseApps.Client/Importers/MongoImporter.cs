@@ -19,8 +19,9 @@
 
             foreach (var report in reports)
             {
-                //System.Console.WriteLine(report);
+                Console.WriteLine("Importing current record in MongoDB...");
                 db.Collections["SalesByProductReports"].Insert(report);
+                Console.WriteLine("Done.");
             }
         }
 

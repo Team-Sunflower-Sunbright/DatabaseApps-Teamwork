@@ -24,17 +24,17 @@ namespace DatabaseApps.Client
 
             // SQL Server Manager - Use this to import data to SQL Server
 
-            //SQLServerDBManager sqlManager = new SQLServerDBManager();
+            // SQLServerDBManager sqlManager = new SQLServerDBManager();
 
             // Sample Data
             // sqlManager.ImportMeasuresFromCSVFile("../../Output-Files/SeedFiles/Measures.txt");
             // sqlManager.ImportVendorsFromCSVFile("../../Output-Files/SeedFiles/Vendors.txt");
             // sqlManager.ImportProductsFromCSVFile("../../Output-Files/SeedFiles/Products.txt");
-			
-            
+
+
             // #2 - Export Data from Oracle to MS SQL Server
             // oracleManager.ExportDataToMSSQLContext(sqlManager.SqlServerContext);
-            
+
             // #2 - ZIP Import
             //ZipImporter.Import();
 
@@ -47,8 +47,8 @@ namespace DatabaseApps.Client
             //XMLExporter.ExportToXML(startDate, endDate);
 
             // #5 - Anton : Test of the JsonExport and import into Mongo
-            // var startDate = new DateTime();
-            // var endDate = new DateTime();
+            // var startDate = new DateTime(2014, 07, 20);
+            // var endDate = new DateTime(2014, 07, 21);
 
             // JsonExporter.ExportSalesReportsToJson(sqlManager.SqlServerContext, startDate, endDate);
             // MongoImporter.ImportSalesReportsIntoDatabase();
